@@ -42,7 +42,7 @@ def parameter_parser():
         type=str)
     parser.add_argument("-e", "--extra", help=f"Extra kbps at either side of \
         the target protein-coding gene to download. Default={def_extra}", \
-        default=def_extra)
+        default=def_extra, type=int)
     parser.add_argument("-o", "--outputfolder", help=f"Where to put retrieved \
         files. Default={def_o}", type=Path, default=def_o)
     
@@ -187,6 +187,9 @@ if __name__ == '__main__':
             except Entrez.Parser.ValidationError:
                 # some of these don't work through Entrez, but do work on the website (?)
                 print(f"ERROR! Can't read efetch results for {acc}. Try manually: https://www.ncbi.nlm.nih.gov/ipg/?term={acc}")
+                continue
+            except RuntimeError:
+                print(f"RuntimeError for {acc}. Try manually: https://www.ncbi.nlm.nih.gov/ipg/?term={acc}")
                 continue
             
             for report in ipgs.values():
