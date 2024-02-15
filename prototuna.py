@@ -181,7 +181,8 @@ def parse_accessions(args):
     """
 
     # get protein ids
-    accession_list = list()
+    accession_list = []
+    accession_set = set()
     if args.list:
         acc_list_file = args.list
         if not acc_list_file.is_file():
