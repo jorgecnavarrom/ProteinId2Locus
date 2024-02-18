@@ -207,8 +207,8 @@ def parse_accessions(args):
 def main():
     args = parameter_parser()
 
-    Entrez.email = ""
-    Entrez.api_key = ""
+    Entrez.email = input("Enter your email: ")
+    Entrez.api_key = input("Enter your api key: ")
     Entrez.tool = "ProtoTuna"
 
     # Minimal checking of input
